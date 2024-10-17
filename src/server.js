@@ -5,16 +5,20 @@ const express = require("express");
 const app = express();
 
 function xanderMiddleware (request, response, next){
-    response.customData.xander = "cool programmer!"
+    request.customData.xander = "cool programmer!"
     next();
 }
 
 
-app.get("/", (request, response) => {
-	// response.send("<h1>Hello world!</h1>");
-	response.json({
-		message:"Hello world!"
-	});
+app.get("/", 
+    // middleware function goes here
+    xanderMiddleware,
+    (request, response) => {
+    // response.send("<h1>Hello world!</h1>");
+    response.json({
+        message:"Hello world!",
+        customStuff: request.coolCoderAcademyStuff
+    });
 });
 
 app.post("/", (request, response) => {
