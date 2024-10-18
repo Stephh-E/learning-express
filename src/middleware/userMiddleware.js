@@ -9,3 +9,7 @@ const checkIfAdmin = (request, response, next) => {
     }
     next();
 }
+
+module.exports = {
+    checkIfAdmin
+}
